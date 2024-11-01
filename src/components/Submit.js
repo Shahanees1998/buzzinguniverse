@@ -1,14 +1,81 @@
 import React, { useState } from 'react';
-// import "https://buzzinguniverse.iqspark.org/css_file/submit.css";
 import { Helmet } from 'react-helmet';
 import { Editor } from '@tinymce/tinymce-react';
-
+import '../css/submit.css'
 function Submit() {
-    const [content, setContent] = useState('');
+    const [jobInfo, setJobInfo] = useState({
+        title: '',
+        location: '',
+        remote: false,
+        type: 'Full Time',
+        description: '',
+        companyId : '',
+        application: '',
+    });
+
+    const [companyInfo, setCompanyInfo] = useState({
+        name: '',
+        website: '',
+        tagline: '',
+        video: '',
+        twitter: '',
+        logo: null,
+    });
+
+    const handleJobChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setJobInfo((prev) => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : value,
+        }));
+    };
+
+    const handleCompanyChange = (e) => {
+        const { name, value } = e.target;
+        setCompanyInfo((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
     const handleEditorChange = (content) => {
-        setContent(content);
+        setJobInfo((prev) => ({
+            ...prev,
+            description: content,
+        }));
     };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setCompanyInfo((prev) => ({
+            ...prev,
+            logo: file,
+        }));
+    };
+    const validateForm = () => {
+        const { title, location, type, description, application, companyId } = jobInfo;
+        const { name, website, tagline, video, twitter, logo } = companyInfo;
+
+        if (!title || !location || !type || !description || !application || !companyId) {
+            alert("Please fill in all the fields for job");
+            return false;
+        }
+        if( companyId == '0' &&  (!website || !tagline || !video || !twitter || !logo))
+        {
+            alert("Please fill in all the fields for company");
+            return false;
+        }
+        return true;
+    };
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (validateForm) {
+            console.log('all fields filled')
+        }
+
+
+
+    }
     return (
         <>
             <Helmet>
@@ -26,7 +93,7 @@ function Submit() {
                                     <main id="main" className="main-content">
                                         <article id="post-59" className="post-59 page type-page status-publish hentry beehive-post">
                                             <div className="entry-content clearfix">
-                                                <form action="/post-a-job/" method="post" id="submit-job-form" className="job-manager-form" enctype="multipart/form-data">
+                                                <form action="/post-a-job/" method="post" id="submit-job-form" className="job-manager-form" enctype="multipart/form-data" onSubmit={handleSubmit} >
                                                     <input type="hidden" id="_wpjm_nonce" name="_wpjm_nonce" value="1dca455611" />
                                                     <input type="hidden" name="_wp_http_referer" value="/post-a-job/" />
                                                     <div className="block-title">
@@ -34,45 +101,73 @@ function Submit() {
                                                     </div>
 
                                                     <fieldset className="fieldset-job_title fieldset-type-text">
-                                                        <label for="job_title">Job Title</label>
+                                                        <label htmlFor="job_title">Job Title</label>
                                                         <div className="field required-field">
-                                                            <input type="text" className="input-text" name="job_title" id="job_title" placeholder="" value="" maxlength="" required="" />
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="title"
+                                                                id="job_title"
+                                                                placeholder="Enter the job title"
+                                                                value={jobInfo.title}
+                                                                onChange={handleJobChange}
+                                                                required
+                                                            />
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-job_location fieldset-type-text">
-                                                        <label for="job_location">Location <small>(optional)</small>
-                                                        </label>
-                                                        <div className="field ">
-                                                            <input type="text" className="input-text" name="job_location" id="job_location" placeholder="e.g. &quot;London&quot;" value="" maxlength="" />
+                                                        <label htmlFor="job_location">Location <small>(optional)</small></label>
+                                                        <div className="field">
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="location"
+                                                                id="job_location"
+                                                                placeholder="e.g. &quot;London&quot;"
+                                                                value={jobInfo.location}
+                                                                onChange={handleJobChange}
+                                                            />
                                                             <small className="description">Leave this blank if the location is not important</small>
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-remote_position fieldset-type-checkbox">
-                                                        <label for="remote_position">Remote Position <small>(optional)</small>
-                                                        </label>
-                                                        <div className="field ">
-                                                            <input type="checkbox" className="input-checkbox" name="remote_position" id="remote_position" value="1" />
+                                                        <label htmlFor="remote_position">Remote Position <small>(optional)</small></label>
+                                                        <div className="field" style={{ marginTop: '1.5%' }}>
+                                                            <input
+                                                                type="checkbox"
+                                                                className="input-checkbox"
+                                                                name="remote"
+                                                                id="remote_position"
+                                                                checked={jobInfo.remote}
+                                                                onChange={handleJobChange}
+                                                            />
                                                             <small className="description">Select if this is a remote position.</small>
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-job_type fieldset-type-term-select">
-                                                        <label for="job_type">Job type</label>
+                                                        <label htmlFor="job_type">Job type</label>
                                                         <div className="field required-field">
-                                                            <select name="job_type" id="job_type" className="postform">
-                                                                <option className="level-0" value="26">Freelance</option>
-                                                                <option className="level-0" value="23" selected="selected">Full Time</option>
-                                                                <option className="level-0" value="27">Internship</option>
-                                                                <option className="level-0" value="24">Part Time</option>
-                                                                <option className="level-0" value="25">Temporary</option>
+                                                            <select
+                                                                name="type"
+                                                                id="job_type"
+                                                                className="postform"
+                                                                value={jobInfo.type}
+                                                                onChange={handleJobChange}
+                                                            >
+                                                                <option value="Freelance">Freelance</option>
+                                                                <option value="Full Time">Full Time</option>
+                                                                <option value="Internship">Internship</option>
+                                                                <option value="Part Time">Part Time</option>
+                                                                <option value="Temporary">Temporary</option>
                                                             </select>
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-job_description fieldset-type-wp-editor">
-                                                        <label for="job_description">Description</label>
+                                                        <label htmlFor="job_description">Description</label>
                                                         <div className="field required-field">
                                                             <Editor
                                                                 apiKey="6n6085y2zxnpx1z72tdi0n1cqo5x7zl2zv3z5xtxikdg5oo6" // Get your free API key at https://www.tiny.cloud/
-                                                                value={content}
+                                                                value={jobInfo.description}
                                                                 init={{
                                                                     height: 400,
                                                                     menubar: false,
@@ -82,92 +177,152 @@ function Submit() {
                                                                         'insertdatetime media table paste code help wordcount'
                                                                     ],
                                                                     toolbar:
-                                                                        'undo redo | formatselect | bold italic backcolor | \
-                                            alignleft aligncenter alignright alignjustify | \
-                                            bullist numlist outdent indent | removeformat | help'
+                                                                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
                                                                 }}
                                                                 onEditorChange={handleEditorChange}
                                                             />
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-application fieldset-type-text">
-                                                        <label for="application">Application email/URL</label>
+                                                        <label htmlFor="application">Application email/URL</label>
                                                         <div className="field required-field">
-                                                            <input type="text" className="input-text" name="application" id="application" placeholder="Enter an email address or website URL" value="Shazzy@yopmail.com" maxlength="" required="" />
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="application"
+                                                                id="application"
+                                                                placeholder="Enter an email address or website URL"
+                                                                value={jobInfo.application}
+                                                                onChange={handleJobChange}
+                                                                required
+                                                            />
                                                         </div>
                                                     </fieldset>
-
+                                                    <fieldset className="fieldset-job_type fieldset-type-term-select">
+                                                        <label htmlFor="job_type">Select Company</label>
+                                                        <div className="field required-field">
+                                                            <select
+                                                                name="companyId"
+                                                                id="companyId"
+                                                                className="postform"
+                                                                value={jobInfo.companyId}
+                                                                onChange={handleJobChange}
+                                                            >
+                                                                <option value="4">Company 1</option>
+                                                                <option value="3">Company 2</option>
+                                                                <option value="2">Company 3</option>
+                                                                <option value="1">Company 4</option>
+                                                                <option value="0">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </fieldset>
+                                                  {jobInfo.companyId == '0' &&  <>
                                                     <div className="block-title">
                                                         <h3>Company details</h3>
                                                     </div>
                                                     <fieldset className="fieldset-company_name fieldset-type-text">
-                                                        <label for="company_name">Company name</label>
+                                                        <label htmlFor="company_name">Company name</label>
                                                         <div className="field required-field">
-                                                            <input type="text" className="input-text" name="company_name" id="company_name" placeholder="Enter the name of the company" value="" maxlength="" required="" />
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="name"
+                                                                id="company_name"
+                                                                placeholder="Enter the name of the company"
+                                                                value={companyInfo.name}
+                                                                onChange={handleCompanyChange}
+                                                                required
+                                                            />
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-company_website fieldset-type-text">
-                                                        <label for="company_website">Website <small>(optional)</small>
-                                                        </label>
-                                                        <div className="field ">
-                                                            <input type="text" className="input-text" name="company_website" id="company_website" placeholder="http://" value="" maxlength="" />
+                                                        <label htmlFor="company_website">Website <small>(optional)</small></label>
+                                                        <div className="field">
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="website"
+                                                                id="company_website"
+                                                                placeholder="http://"
+                                                                value={companyInfo.website}
+                                                                onChange={handleCompanyChange}
+                                                            />
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-company_tagline fieldset-type-text">
-                                                        <label for="company_tagline">Tagline <small>(optional)</small>
-                                                        </label>
-                                                        <div className="field ">
-                                                            <input type="text" className="input-text" name="company_tagline" id="company_tagline" placeholder="Briefly describe your company" value="" maxlength="64" />
+                                                        <label htmlFor="company_tagline">Tagline <small>(optional)</small></label>
+                                                        <div className="field">
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="tagline"
+                                                                id="company_tagline"
+                                                                placeholder="Briefly describe your company"
+                                                                value={companyInfo.tagline}
+                                                                onChange={handleCompanyChange}
+                                                            />
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-company_video fieldset-type-text">
-                                                        <label for="company_video">Video <small>(optional)</small>
-                                                        </label>
-                                                        <div className="field ">
-                                                            <input type="text" className="input-text" name="company_video" id="company_video" placeholder="A link to a video about your company" value="" maxlength="" />
+                                                        <label htmlFor="company_video">Video <small>(optional)</small></label>
+                                                        <div className="field">
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="video"
+                                                                id="company_video"
+                                                                placeholder="A link to a video about your company"
+                                                                value={companyInfo.video}
+                                                                onChange={handleCompanyChange}
+                                                            />
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-company_twitter fieldset-type-text">
-                                                        <label for="company_twitter">Twitter username <small>(optional)</small>
-                                                        </label>
-                                                        <div className="field ">
-                                                            <input type="text" className="input-text" name="company_twitter" id="company_twitter" placeholder="@yourcompany" value="" maxlength="" />
+                                                        <label htmlFor="company_twitter">Twitter username <small>(optional)</small></label>
+                                                        <div className="field">
+                                                            <input
+                                                                type="text"
+                                                                className="input-text text-field"
+                                                                name="twitter"
+                                                                id="company_twitter"
+                                                                placeholder="@yourcompany"
+                                                                value={companyInfo.twitter}
+                                                                onChange={handleCompanyChange}
+                                                            />
                                                         </div>
                                                     </fieldset>
                                                     <fieldset className="fieldset-company_logo fieldset-type-file">
-                                                        <label for="company_logo">Logo <small>(optional)</small>
-                                                        </label>
-                                                        <div className="field ">
-                                                            <div className="job-manager-uploaded-files"></div>
-                                                            <input type="file" className="input-text wp-job-manager-file-upload" data-file_types="jpg|jpeg|gif|png" name="company_logo" id="company_logo" placeholder="" />
+                                                        <label htmlFor="company_logo">Logo <small>(optional)</small></label>
+                                                        <div className="field">
+                                                            <input
+                                                                type="file"
+                                                                className="input-text wp-job-manager-file-upload"
+                                                                data-file_types="jpg|jpeg|gif|png"
+                                                                name="logo"
+                                                                id="company_logo"
+                                                                onChange={handleFileChange}
+                                                            />
                                                             <small className="description"> Maximum file size: 512 MB. </small>
                                                         </div>
                                                     </fieldset>
+                                                    </>}
                                                     <div className="submit">
                                                         <input type="hidden" name="job_manager_form" value="submit-job" />
                                                         <input type="hidden" name="job_id" value="0" />
                                                         <input type="hidden" name="step" value="0" />
-                                                        <input type="submit" name="submit_job" className="button" value="Preview" />
-                                                        <input type="submit" name="save_draft" className="button button-outline save_draft" value="Save Draft" formnovalidate="" />
+                                                        <input type="submit" name="submit_job" className="button" value="Submit" />
+                                                        <input type="submit" name="save_draft" className="button button-outline save_draft" value="Save Draft" formNoValidate style={{ marginLeft: '2%' }} />
                                                         <span className="spinner"></span>
                                                     </div>
                                                 </form>
                                             </div>
-
                                         </article>
-
                                     </main>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </>
     );

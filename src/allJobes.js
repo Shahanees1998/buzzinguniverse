@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import Alljobs from "./components/alljobs";
 import { useLocation } from 'react-router-dom';
 import Submit from "./components/Submit";
+import ManageJob from './components/manageJob';
 const AllJobes = () => {
     const [activeTab, setActiveTab] = useState('All jobs');
 
@@ -64,7 +65,7 @@ const AllJobes = () => {
                     <p style={{textAlign:"center"}}>No job categories found.</p>
                 </div>}
                 {activeTab === 'Manage' && <div style={{width:"90%"}} className='actity-tabs'>
-                    <p style={{textAlign:"center"}}>You do not have any active listings.</p>
+                    <ManageJob />
                 </div>}
                 {activeTab === 'Submit' && <div style={{width:"90%"}} className='actity-tabs'>
                     <Submit />

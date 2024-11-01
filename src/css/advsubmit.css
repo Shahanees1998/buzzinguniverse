@@ -8,67 +8,30 @@
         border-style: solid;
     }
 }
-.input-text {
-    font-size: 13px !important;
-}
-.text-field {
-    font-size: 13px !important;
-}
-.manage-job-container {
-    padding: 20px;
-    width: 100%;
-    overflow-x: auto;
-  }
-  
-  .job-table {
-    width: 100% !important;
-    border-collapse: collapse;
-    min-width: 600px;
-  }
-  
-  .job-table th,
-  .job-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .job-table th {
-    background-color: #f5f5f5;
-    font-weight: 600;
-  }
-  
-  .job-table tr:hover {
-    background-color: #f9f9f9;
-  }
-  
-  /* Responsive styles */
-  @media screen and (max-width: 768px) {
-    .job-table {
-      font-size: 14px;
-    }
-    
-    .job-table th,
-    .job-table td {
-      padding: 8px;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .manage-job-container {
-      padding: 10px;
-    }
-    
-    .job-table {
-      font-size: 12px;
-    }
-  }
+
 /*! CSS Used from: https://buzzinguniverse.com/wp-content/themes/beehive-child/buddypress/css/buddypress.min.css?ver=11.2.0 ; media=screen */
 @media screen {
 
     .clearfix:before,
     .clearfix:after {
         content: " ";
+        display: table;
+    }
+
+    .clearfix:after {
+        clear: both;
+    }
+}
+
+/*! CSS Used from: https://buzzinguniverse.com/wp-content/plugins/wp-job-manager/assets/dist/css/job-listings.css?ver=598383a28ac5f9f156e4 ; media=all */
+@media all {
+    .clearfix {
+        zoom: 1;
+    }
+
+    .clearfix:after,
+    .clearfix:before {
+        content: "";
         display: table;
     }
 
@@ -86,8 +49,7 @@
         box-sizing: border-box;
     }
 
-    article,
-    main {
+    article {
         display: block;
     }
 
@@ -100,8 +62,25 @@
         margin-bottom: .5rem;
     }
 
-    small {
-        font-size: 80%;
+    p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    strong {
+        font-weight: bolder;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+
+    a:hover {
+        color: #0056b3;
+        text-decoration: underline;
     }
 
     label {
@@ -120,7 +99,6 @@
 
     button,
     input,
-    select,
     textarea {
         margin: 0;
         font-family: inherit;
@@ -133,8 +111,7 @@
         overflow: visible;
     }
 
-    button,
-    select {
+    button {
         text-transform: none;
     }
 
@@ -144,7 +121,8 @@
         -webkit-appearance: button;
     }
 
-    input[type=checkbox] {
+    input[type=checkbox],
+    input[type=radio] {
         box-sizing: border-box;
         padding: 0;
     }
@@ -173,48 +151,6 @@
         font-size: 1.75rem;
     }
 
-    small {
-        font-size: 80%;
-        font-weight: 400;
-    }
-
-    .container-fluid {
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .row {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        margin-right: -15px;
-        margin-left: -15px;
-    }
-
-    .col-lg-8 {
-        position: relative;
-        width: 100%;
-        min-height: 1px;
-        padding-right: 15px;
-        padding-left: 15px;
-    }
-
-    .input-text {
-        font-size: 13px !important;
-    }
-
-    @media (min-width:992px) {
-        .col-lg-8 {
-            -ms-flex: 0 0 66.666667%;
-            flex: 0 0 66.666667%;
-            max-width: 66.666667%;
-        }
-    }
-
     .clearfix::after {
         display: block;
         clear: both;
@@ -230,7 +166,12 @@
             box-shadow: none !important;
         }
 
-        h3 {
+        a:not(.btn) {
+            text-decoration: underline;
+        }
+
+        h3,
+        p {
             orphans: 3;
             widows: 3;
         }
@@ -256,93 +197,6 @@
     .clearfix:after {
         clear: both;
     }
-
-    .job-manager-form .block-title {
-        /* margin-top: 2.5rem; */
-        margin-top: 0rem;
-    }
-
-    .job-manager-form fieldset {
-        margin: 0 0 1rem 0;
-        border: 0;
-    }
-
-    .job-manager-form fieldset:after,
-    .job-manager-form fieldset:before {
-        content: "";
-        display: table;
-    }
-
-    .job-manager-form fieldset:after {
-        clear: both;
-    }
-
-    .job-manager-form fieldset label {
-        display: block;
-        margin: 0;
-        width: 165px;
-        float: left;
-        line-height: 2.5rem;
-    }
-
-    .job-manager-form fieldset select {
-        width: 100%;
-    }
-
-    .job-manager-form fieldset div.field {
-        width: calc(99% - 165px);
-        float: right;
-        font-size: 13px !important;
-        vertical-align: middle;
-    }
-
-    .job-manager-form fieldset small.description {
-        display: none;
-    }
-
-    .job-manager-form fieldset .job-manager-uploaded-files {
-        display: table;
-    }
-
-    .job-manager-form div.submit {
-        margin-left: calc(165px + 1%);
-    }
-
-    .job-manager-form div.submit input[type=submit] {
-        margin-bottom: .5rem;
-    }
-
-    .job-manager-form input[type=submit]:disabled {
-        opacity: .5;
-        cursor: not-allowed;
-    }
-
-    .job-manager-form .spinner {
-        background: url(https://buzzinguniverse.com/wp-content/wp-includes/images/spinner.gif) no-repeat;
-        background-size: 20px 20px;
-        display: inline-block;
-        visibility: hidden;
-        width: 20px;
-        height: 20px;
-        margin: 0;
-        vertical-align: middle;
-    }
-
-    @media (max-width:575.98px) {
-
-        .job-manager-form fieldset div.field,
-        .job-manager-form fieldset label {
-            width: 100%;
-        }
-
-        .job-manager-form fieldset label {
-            line-height: 2em;
-        }
-
-        .job-manager-form div.submit {
-            margin: initial;
-        }
-    }
 }
 
 /*! CSS Used from: https://buzzinguniverse.com/wp-content/themes/beehive/rtmedia/assets/css/rtmedia.min.css?ver=1.4.8 ; media=all */
@@ -351,6 +205,283 @@
         content: "";
         display: table;
         clear: both;
+    }
+}
+
+/*! CSS Used from: https://buzzinguniverse.com/wp-content/themes/beehive/wpadverts/assets/css/adverts-frontend.min.css?ver=1.4.8 ; media=all */
+@media all {
+    .adverts-button {
+        background-color: #5561e2;
+        background-image: linear-gradient(90deg, #5561e2 0, #969eed 50%, #5561e2 100%);
+        background-size: 200%;
+        display: inline-block;
+        padding: .375rem 2rem;
+        padding-top: calc(.375rem + 1px);
+        padding-bottom: calc(.375rem + 1px);
+        border: none;
+        min-height: 2.5rem;
+        border-radius: 1.25rem;
+        text-align: center;
+        outline: 0;
+        text-decoration: none;
+        cursor: pointer;
+        color: #fff !important;
+        box-shadow: 0 1px 2px 0 rgba(0, 113, 188, .5);
+        vertical-align: middle;
+    }
+
+    .adverts-button:hover {
+        background-color: #8189e9;
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    #adverts-plupload-upload-ui-gallery .adverts-button {
+        background: 0 0;
+        color: #5561e2 !important;
+        box-shadow: none;
+        border: 1px solid #5561e2;
+        cursor: pointer;
+    }
+
+    .adverts-form .adverts-form-required {
+        font-weight: 600;
+        color: red;
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-control-group {
+        clear: both;
+        overflow: hidden;
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-control-group.submit {
+        overflow: initial;
+        margin-left: 165px;
+    }
+
+    .adverts-form.adverts-form-aligned .wp-editor-wrap {
+        width: calc(99% - 165px);
+        display: inline-block;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding: 0 0 0 .3em;
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-control-group label {
+        float: left;
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-control-group>div {
+        width: calc(99% - 165px);
+        float: left;
+        padding: 0 0 0 .3em;
+    }
+
+    .adverts-form .adverts-control-group.adverts-field-header:not(:first-of-type) {
+        margin-top: 40px;
+    }
+
+    .adverts-form .adverts-control-group>div.adverts-field-header {
+        width: 100%;
+        padding: 0;
+    }
+
+    .adverts-form .adverts-control-group>div a {
+        color: #5561e2;
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-control-group.adverts-field-select label,
+    .adverts-form.adverts-form-aligned .adverts-control-group.adverts-field-text label {
+        float: none;
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-control-group>div.adverts-multiselect-holder {
+        float: none;
+        display: inline-block;
+        padding: 0;
+    }
+
+    .adverts-form input[type=text],
+    .adverts-form textarea {
+        display: inline-block;
+        width: calc(99% - 165px);
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .adverts-form fieldset {
+        margin: 0;
+        border: 0;
+    }
+
+    .adverts-form-aligned input,
+    .adverts-form-aligned textarea {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .adverts-form-aligned textarea {
+        vertical-align: top;
+    }
+
+    .adverts-form-aligned .adverts-control-group {
+        margin-bottom: 1rem;
+    }
+
+    .adverts-form-aligned .adverts-control-group.adverts-field-header {
+        margin-bottom: 0;
+    }
+
+    .adverts-form-aligned .adverts-control-group>label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 165px;
+        padding-right: .5rem;
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-control-group>div.adverts-multiselect-holder {
+        width: calc(99% - 165px);
+    }
+
+    .adverts-form.adverts-form-aligned .adverts-multiselect-options label {
+        float: initial;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    input[type=text].adverts-multiselect-input {
+        cursor: pointer;
+        margin-bottom: 0;
+        z-index: 100;
+        background-image: url(https://buzzinguniverse.com/wp-content/themes/beehive/wpadverts/assets/images/icon-arrow-down.png);
+        background-repeat: no-repeat;
+        background-position: 98% 50%;
+        width: 100%;
+    }
+
+    .adverts-multiselect-options {
+        min-height: 50px;
+        max-height: 200px;
+        min-width: 200px;
+        overflow-y: auto;
+        display: none;
+        width: 100%;
+        z-index: 10000;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #e7edf2;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .adverts-multiselect-options::-webkit-scrollbar {
+        width: .5rem;
+    }
+
+    .adverts-multiselect-options::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .2);
+    }
+
+    .adverts-multiselect-options::-webkit-scrollbar-thumb {
+        background-color: #a9a9a9;
+        outline: 1px solid #708090;
+    }
+
+    .adverts-multiselect-options>label {
+        display: block;
+        padding: 2px 6px 2px 6px;
+        margin: 0;
+    }
+
+    body.beehive .adverts-gallery {
+        background: 0 0;
+        background-color: none;
+        border: 2px dotted #e7edf2;
+        border-radius: 12px;
+        height: auto;
+        padding: 1rem;
+    }
+
+    body.beehive .adverts-gallery>p {
+        font-size: 1rem;
+        margin: 1rem 0;
+    }
+
+    body.beehive .adverts-gallery-uploads {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin: 0 -.25rem;
+    }
+
+    body.beehive .adverts-form .adverts-listing-type-x {
+        background-color: transparent;
+        margin-bottom: 0;
+    }
+
+    body.beehive .adverts-form .adverts-listing-type-x:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    body.beehive .adverts-cute-input {
+        left: 0;
+    }
+
+    body.beehive .adverts-form .adverts-listing-type-name {
+        padding: 0;
+        font-size: 1em;
+        line-height: initial;
+        font-weight: 600;
+    }
+
+    body.beehive .adverts-form .adverts-listing-type-features {
+        color: #bbbbdc;
+        font-size: 12px;
+    }
+
+    body.beehive .adverts-form .adverts-listing-type-cost {
+        background: 0 0;
+        color: #5561e2;
+        padding: 0;
+        font-size: 1rem;
+        line-height: 2em;
+        color: initial;
+        right: 0;
+        border-radius: 0;
+        font-weight: 600;
+    }
+
+    body.beehive .adverts-cute-input input:checked:focus~.adverts-cute-input-indicator,
+    body.beehive .adverts-cute-input input:checked~.adverts-cute-input-indicator,
+    body.beehive .adverts-cute-input:hover input:not([disabled]):checked~.adverts-cute-input-indicator {
+        background: #5561e2;
+    }
+
+    @media (max-width:767.98px) {
+        .adverts-form-aligned .adverts-control-group>label {
+            width: 100%;
+            padding: 0;
+        }
+
+        .adverts-form input[type=text],
+        .adverts-form textarea,
+        .adverts-form.adverts-form-aligned .adverts-control-group>div,
+        .adverts-form.adverts-form-aligned .adverts-control-group>div.adverts-multiselect-holder {
+            width: 100%;
+        }
+
+        .adverts-form.adverts-form-aligned .adverts-control-group>div {
+            padding: 0;
+        }
+
+        .adverts-form.adverts-form-aligned .adverts-control-group.submit {
+            margin-left: 0;
+        }
     }
 }
 
@@ -370,21 +501,26 @@
         font-size: 1.616em;
     }
 
+    a {
+        color: #29292d;
+        transition: .5s;
+    }
+
+    a:hover {
+        color: #5561e2;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    strong {
+        font-weight: 600;
+    }
+
     iframe {
         display: block;
         max-width: 100% !important;
-    }
-
-    small {
-        font-size: 85%;
-    }
-
-    small {
-        color: #bbbbdc;
-    }
-
-    .site-content {
-        transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     }
 
     .block-title {
@@ -420,14 +556,21 @@
         font-size: 1em;
     }
 
+    label span {
+        color: #bbbbdc;
+        font-weight: normal;
+    }
+
+    label input+span {
+        color: #626c72;
+    }
+
     input,
-    select,
     textarea {
         color: #626c72;
     }
 
-    input[type="text"],
-    select {
+    input[type="text"] {
         background-color: #f7f7f7;
         display: block;
         height: 2.5rem;
@@ -436,8 +579,7 @@
         border-radius: 1.25rem;
     }
 
-    input[type="text"]:focus,
-    select:focus {
+    input[type="text"]:focus {
         border: 1px solid #5561e2;
         outline: none;
     }
@@ -446,6 +588,7 @@
         width: 100%;
     }
 
+    input[type="radio"],
     input[type="checkbox"] {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -469,15 +612,18 @@
         transition: all 0.15s ease-out 0s;
     }
 
+    input[type="radio"]:hover,
     input[type="checkbox"]:hover {
         border-color: #c4c4c4;
     }
 
+    input[type="radio"]:checked,
     input[type="checkbox"]:checked {
         border-color: #5561e2;
         box-shadow: 0 6px 10px -2px rgba(58, 46, 68, 0.1);
     }
 
+    input[type="radio"]:checked::before,
     input[type="checkbox"]:checked::before {
         content: '';
         display: inline-block;
@@ -488,6 +634,7 @@
         transform: translate(-50%, -50%);
     }
 
+    input[type="radio"]:checked::after,
     input[type="checkbox"]:checked::after {
         content: '';
         -webkit-animation: click-wave 0.65s;
@@ -497,6 +644,10 @@
         display: block;
         position: relative;
         z-index: 100;
+    }
+
+    input[type="checkbox"]+span {
+        font-weight: normal;
     }
 
     input[type="checkbox"] {
@@ -511,21 +662,21 @@
         font-weight: 600;
     }
 
-    select {
-        padding: .375rem 1rem;
+    input[type="radio"] {
+        top: 3px;
+        border-radius: 50%;
     }
 
-    select:not([multiple]) {
-        background-image: url("https://buzzinguniverse.com/wp-content/themes/beehive/assets/images/select-arrow.svg");
-        background-size: 1em;
-        background-repeat: no-repeat;
-        background-position-x: calc(100% - .75rem);
-        background-position-y: 50%;
-        padding-right: calc(1rem + 1em);
-        position: relative;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+    input[type="radio"]:checked::before {
+        background-color: #5561e2;
+        display: inline-block;
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+    }
+
+    input[type="radio"]::after {
+        border-radius: 50%;
     }
 
     textarea {
@@ -545,7 +696,6 @@
 
     input,
     button,
-    select,
     textarea {
         outline: none !important;
         line-height: 26px;
@@ -553,7 +703,6 @@
 
     input:disabled,
     button:disabled,
-    select:disabled,
     textarea:disabled {
         cursor: not-allowed;
         opacity: 0.5;
@@ -668,83 +817,8 @@
         transition: all 750ms ease;
     }
 
-    input.button-outline {
-        background-color: transparent;
-        color: #5561e2;
-        fill: #5561e2;
-        border: 1px solid #5561e2;
-        box-shadow: 0 10px 15px -7px rgba(58, 46, 68, 0.1);
-    }
-
-    input.button-outline:hover,
-    input.button-outline:focus {
-        background-color: #5561e2;
-        color: #fff;
-        fill: #fff;
-    }
-
-    input.button-outline.button-outline {
-        background-image: none;
-    }
-
-    .layout.social .col-main {
-        padding: 30px 40px 70px 40px;
-        min-height: 100vh;
-    }
-
-    @media screen and (max-width: 1199.98px) {
-        .layout.social .col-main {
-            padding: 30px 30px 70px 30px;
-        }
-    }
-
-    @media screen and (max-width: 991.98px) {
-        .layout.social .col-main {
-            padding: 30px 30px 40px 30px;
-            min-height: initial;
-        }
-    }
-
-    @media screen and (max-width: 767.98px) {
-        .layout.social .col-main {
-            padding: 30px 15px;
-        }
-    }
-
-    body.beehive-social-layout .site-content {
-        margin-left: 22%;
-        padding-right: 80px;
-    }
-
-    @media screen and (max-width: 1199.98px) {
-        body.beehive-social-layout .site-content {
-            margin-left: 25%;
-        }
-    }
-
-    @media screen and (max-width: 991.98px) {
-        body.beehive-social-layout .site-content {
-            margin-left: 33%;
-        }
-    }
-
-    @media screen and (max-width: 767.98px) {
-        body.beehive-social-layout .site-content {
-            margin-left: 0;
-            padding-right: 0;
-        }
-    }
-
-    @media screen and (min-width: 1599.98px) {
-        body.panel-expanded:not(.panel-collapsed) .layout.social .col-main {
-            padding: 40px 60px 70px 60px;
-        }
-    }
-
-    @media screen and (min-width: 1799.98px) {
-        body.panel-expanded:not(.panel-collapsed) .layout.social .col-main {
-            padding: 60px 80px 70px 80px;
-        }
+    input.medium {
+        font-size: 1rem;
     }
 
     .entry-content {
@@ -768,25 +842,35 @@
         font-weight: 700;
     }
 
+    a:hover {
+        color: #0a2972;
+    }
+
     .block-title h3:after {
         background: #0a2972;
     }
 
     input[type="text"]:focus,
-    select:focus,
     textarea:focus {
         border: 1px solid #0a2972;
     }
 
+    input[type="radio"],
     input[type="checkbox"] {
         color: #0a2972;
     }
 
+    input[type="radio"]:checked,
     input[type="checkbox"]:checked {
         border-color: #0a2972;
     }
 
+    input[type="radio"]:checked::after,
     input[type="checkbox"]:checked::after {
+        background-color: #0a2972;
+    }
+
+    input[type="radio"]:checked::before {
         background-color: #0a2972;
     }
 
@@ -819,20 +903,35 @@
         color: #fff;
     }
 
-    input.button-outline {
-        background-color: transparent;
-        background-image: none;
-        color: #0a2972;
-        fill: #0a2972;
-        border-color: #0a2972;
-        box-shadow: 0 2px 5px 0 rgba(58, 46, 68, 0.08);
+    .adverts-button {
+        background-color: #0a2972;
+        background-image: linear-gradient(90deg, #0a2972 0, #1042b8 50%, #0a2972 100%);
+        color: #fff !important;
+        box-shadow: 0 1px 2px 0 rgba(10, 41, 114, 0.5);
     }
 
-    input.button-outline:hover,
-    input.button-outline:focus {
-        background-color: #0a2972;
-        box-shadow: 0 2px 5px 0 rgba(58, 46, 68, 0.08);
+    .adverts-button:hover {
+        background-color: #0e3aa1;
         color: #fff;
+    }
+
+    #adverts-plupload-upload-ui-gallery .adverts-button {
+        color: #0a2972 !important;
+        border: 1px solid #0a2972;
+    }
+
+    .adverts-form .adverts-control-group>div a {
+        color: #0a2972;
+    }
+
+    body.beehive .adverts-form .adverts-listing-type-cost {
+        color: #0a2972;
+    }
+
+    body.beehive .adverts-cute-input input:checked~.adverts-cute-input-indicator,
+    body.beehive .adverts-cute-input:hover input:not([disabled]):checked~.adverts-cute-input-indicator,
+    body.beehive .adverts-cute-input input:checked:focus~.adverts-cute-input-indicator {
+        background: #0a2972;
     }
 }
 
@@ -842,12 +941,31 @@
 }
 
 /*! CSS Used from: Embedded */
+.page-id-469 .adverts-form.adverts-form-aligned .adverts-control-group label {
+    color: black !important;
+}
+
+.page-id-469 .adverts-form.adverts-form-aligned .adverts-control-group>div {
+    color: black;
+}
+
+.page-id-469 .adverts-listing-type-x:not(:last-child) {
+    margin-bottom: 1rem;
+    display: none !important;
+}
+
+/*! CSS Used from: Embedded */
 textarea {
     background-color: #156e81 !important;
 }
 
 textarea {
     color: white !important;
+}
+
+/*! CSS Used from: Embedded */
+.adverts-field-name-website_address {
+    display: none !important;
 }
 
 /*! CSS Used from: Embedded */
@@ -865,13 +983,11 @@ input[type="submit"] {
     color: #2b2b2b;
 }
 
-input[type="text"],
-select {
+input[type="text"] {
     background-color: #fff !important;
 }
 
-input[type="text"],
-select {
+input[type="text"] {
     border: 1px solid silver !important;
     margin-bottom: 10px !important;
 }
@@ -1024,6 +1140,10 @@ div.mce-edit-area {
     zoom: 1;
 }
 
+.mce-btn:hover .mce-caret {
+    border-top-color: #b5bcc2;
+}
+
 .mce-btn button {
     padding: 4px 6px;
     font-size: 14px;
@@ -1040,6 +1160,24 @@ div.mce-edit-area {
     text-shadow: 1px 1px none;
 }
 
+.mce-btn .mce-caret {
+    margin-top: 8px;
+    margin-left: 0;
+}
+
+.mce-caret {
+    display: inline-block;
+    /* *display: inline; */
+    /* *zoom: 1; */
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border-top: 4px solid #b5bcc2;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    content: "";
+}
+
 .mce-toolbar .mce-btn-group {
     margin: 0;
     padding: 2px 0;
@@ -1051,14 +1189,26 @@ div.mce-edit-area {
     margin-left: 2px;
 }
 
-.mce-btn-group:not(:first-child) {
-    border-left: 1px solid #d9d9d9;
-    padding-left: 0;
+.mce-btn-group {
     margin-left: 2px;
 }
 
-.mce-btn-group {
-    margin-left: 2px;
+.mce-colorbutton .mce-ico {
+    position: relative;
+}
+
+.mce-colorbutton .mce-preview {
+    padding-right: 3px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -17px;
+    margin-top: 7px;
+    background: gray;
+    width: 13px;
+    height: 2px;
+    overflow: hidden;
 }
 
 .mce-path {
@@ -1122,6 +1272,25 @@ i.mce-i-resize {
     color: #595959;
 }
 
+.mce-splitbtn:hover .mce-open {
+    border-left: 1px solid #e2e4e7;
+}
+
+.mce-splitbtn .mce-open {
+    border-left: 1px solid transparent;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.mce-splitbtn .mce-open:focus {
+    border-left: 1px solid #e2e4e7;
+}
+
+.mce-splitbtn .mce-open:hover,
+.mce-splitbtn .mce-open:active {
+    border-left: 1px solid #e2e4e7;
+}
+
 .mce-stack-layout-item {
     display: block;
 }
@@ -1153,12 +1322,20 @@ i.mce-i-resize {
     content: "\e00b";
 }
 
-.mce-i-undo:before {
-    content: "\e00f";
+.mce-i-indent:before {
+    content: "\e00c";
 }
 
-.text-field {
-    font-size: 13px !important;
+.mce-i-outdent:before {
+    content: "\e00d";
+}
+
+.mce-i-blockquote:before {
+    content: "\e00e";
+}
+
+.mce-i-undo:before {
+    content: "\e00f";
 }
 
 .mce-i-redo:before {
@@ -1173,6 +1350,22 @@ i.mce-i-resize {
     content: "\e012";
 }
 
+.mce-i-forecolor:before {
+    content: "\e01a";
+}
+
+.mce-i-hr:before {
+    content: "\e01c";
+}
+
+.mce-i-removeformat:before {
+    content: "\e01d";
+}
+
+.mce-i-charmap:before {
+    content: "\e020";
+}
+
 .mce-i-bold:before {
     content: "\e02a";
 }
@@ -1181,8 +1374,16 @@ i.mce-i-resize {
     content: "\e02b";
 }
 
+.mce-i-strikethrough:before {
+    content: "\e02d";
+}
+
 .mce-i-resize:before {
     content: "\e032";
+}
+
+.mce-i-pastetext:before {
+    content: "\e035";
 }
 
 /*! CSS Used from: https://buzzinguniverse.com/wp-includes/css/editor.min.css?ver=6.6.1 ; media=all */
@@ -1291,6 +1492,36 @@ i.mce-i-resize {
         white-space: normal;
     }
 
+    .mce-toolbar .mce-colorbutton .mce-open {
+        border-right: 0;
+    }
+
+    .mce-toolbar .mce-colorbutton .mce-preview {
+        margin: 0;
+        padding: 0;
+        top: auto;
+        bottom: 2px;
+        left: 3px;
+        height: 3px;
+        width: 20px;
+        background: #50575e;
+    }
+
+    .mce-panel .mce-btn i.mce-caret {
+        border-top: 6px solid #50575e;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    .mce-panel .mce-btn:focus i.mce-caret,
+    .mce-panel .mce-btn:hover i.mce-caret {
+        border-top-color: #1d2327;
+    }
+
+    .mce-toolbar .mce-splitbtn:hover .mce-open {
+        border-right-color: transparent;
+    }
+
     .mce-ico {
         font-family: tinymce, Arial;
     }
@@ -1306,14 +1537,34 @@ i.mce-i-resize {
         padding: 0;
     }
 
+    .mce-toolbar .mce-btn .mce-open {
+        line-height: 20px;
+    }
+
+    .mce-toolbar .mce-btn:focus .mce-open,
+    .mce-toolbar .mce-btn:hover .mce-open {
+        border-left-color: #1d2327;
+    }
+
+    i.mce-i-blockquote,
     i.mce-i-bold,
     i.mce-i-bullist,
+    i.mce-i-charmap,
+    i.mce-i-forecolor,
+    i.mce-i-hr,
+    i.mce-i-indent,
     i.mce-i-italic,
     i.mce-i-link,
     i.mce-i-numlist,
+    i.mce-i-outdent,
+    i.mce-i-pastetext,
     i.mce-i-redo,
+    i.mce-i-removeformat,
+    i.mce-i-strikethrough,
     i.mce-i-undo,
-    i.mce-i-unlink {
+    i.mce-i-unlink,
+    i.mce-i-wp_adv,
+    i.mce-i-wp_help {
         font: normal 20px/1 dashicons;
         padding: 0;
         vertical-align: top;
@@ -1340,6 +1591,10 @@ i.mce-i-resize {
         content: "\f204";
     }
 
+    i.mce-i-blockquote:before {
+        content: "\f205";
+    }
+
     i.mce-i-link:before {
         content: "\f103";
     }
@@ -1348,12 +1603,52 @@ i.mce-i-resize {
         content: "\f225";
     }
 
+    i.mce-i-strikethrough:before {
+        content: "\f224";
+    }
+
+    i.mce-i-wp_adv:before {
+        content: "\f212";
+    }
+
+    i.mce-i-forecolor:before {
+        content: "\f215";
+    }
+
+    i.mce-i-pastetext:before {
+        content: "\f217";
+    }
+
+    i.mce-i-removeformat:before {
+        content: "\f218";
+    }
+
+    i.mce-i-charmap:before {
+        content: "\f220";
+    }
+
+    i.mce-i-outdent:before {
+        content: "\f221";
+    }
+
+    i.mce-i-indent:before {
+        content: "\f222";
+    }
+
     i.mce-i-undo:before {
         content: "\f171";
     }
 
     i.mce-i-redo:before {
         content: "\f172";
+    }
+
+    i.mce-i-wp_help:before {
+        content: "\f223";
+    }
+
+    i.mce-i-hr:before {
+        content: "\f460";
     }
 
     .wp-editor-wrap {
@@ -1396,12 +1691,208 @@ i.mce-i-resize {
         .mce-toolbar .mce-btn-group .mce-btn {
             margin: 1px;
         }
+
+        .mce-toolbar .mce-colorbutton .mce-preview {
+            left: 8px;
+            bottom: 6px;
+        }
     }
 }
 
-/*! CSS Used from: Embedded */
-.mce-top-part button {
-    background-color: rgba(0, 0, 0, 0.0) !important;
+/*! CSS Used from: https://buzzinguniverse.com/wp-content/plugins/wpadverts/assets/css/wpadverts-glyphs.css?ver=4.7.2 ; media=all */
+@media all {
+    [class*=" adverts-icon-"]:before {
+        font-family: "adverts-glyphs";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline-block;
+        text-decoration: inherit;
+        width: 1em;
+        margin-right: .2em;
+        text-align: center;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1em;
+        margin-left: .2em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .adverts-icon-clock:before {
+        content: '\e84b';
+    }
+}
+
+/*! CSS Used from: https://buzzinguniverse.com/wp-content/plugins/wpadverts/addons/payments/assets/css/payments-frontend.css?ver=1.2.8 ; media=all */
+@media all {
+    .adverts-form .adverts-listing-type-x {
+        display: block;
+        clear: both;
+        overflow: hidden;
+        background-color: #fcfcfc;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .adverts-form .adverts-listing-type-title {
+        padding: 4px 0px;
+        display: inline-block;
+        float: left;
+    }
+
+    .adverts-form .adverts-listing-type-field {
+        margin: 0 110px 0 30px;
+    }
+
+    .adverts-form .adverts-listing-type-name {
+        padding: 5px 0 5px 0;
+        line-height: 1rem;
+        font-size: 18px;
+        clear: both;
+        overflow: hidden;
+    }
+
+    .adverts-form .adverts-listing-type-cost {
+        position: absolute;
+        padding: 2px 8px;
+        right: 5px;
+        top: 50%;
+        margin: -17px 0 0 0;
+        font-size: 18px;
+        line-height: 30px;
+        float: right;
+        background: #2aa1c0;
+        color: white;
+        border-radius: 2px;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .adverts-form .adverts-listing-type-features {
+        width: 100%;
+        font-size: 13px;
+        line-height: 1.2rem;
+        padding: 0px 0 5px 0;
+    }
+
+    .adverts-form .adverts-listing-type-icon:before {
+        margin-left: 0;
+    }
+
+    .adverts-cute-input {
+        position: absolute;
+        display: inline-block;
+        margin-bottom: 15px;
+        padding-right: 30px;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        margin: 0 !important;
+        top: 50%;
+        left: 5px;
+        margin-top: -10px !important;
+        padding: 0 !important;
+    }
+
+    .adverts-cute-input input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .adverts-cute-input-indicator {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        background: #e6e6e6;
+    }
+
+    .adverts-cute-input.adverts-cute-radio .adverts-cute-input-indicator {
+        border-radius: 50%;
+    }
+
+    .adverts-cute-input:hover input~.adverts-cute-input-indicator,
+    .adverts-cute-input input:focus~.adverts-cute-input-indicator {
+        background: #ccc;
+    }
+
+    .adverts-cute-input input:checked~.adverts-cute-input-indicator {
+        background: #2aa1c0;
+    }
+
+    .adverts-cute-input:hover input:not([disabled]):checked~.adverts-cute-input-indicator,
+    .adverts-cute-input input:checked:focus~.adverts-cute-input-indicator {
+        background: #0e647d;
+    }
+
+    .adverts-cute-input input:disabled~.adverts-cute-input-indicator {
+        pointer-events: none;
+        opacity: .6;
+        background: #e6e6e6;
+    }
+
+    .adverts-cute-input-indicator:after {
+        position: absolute;
+        display: none;
+        content: '';
+    }
+
+    .adverts-cute-input input:checked~.adverts-cute-input-indicator:after {
+        display: block;
+    }
+
+    .adverts-cute-input.adverts-cute-radio .adverts-cute-input-indicator:after {
+        top: 7px;
+        left: 7px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    .adverts-cute-input.adverts-cute-radio input:disabled~.adverts-cute-input-indicator:after {
+        background: #7b7b7b;
+    }
+}
+
+/*! CSS Used from: https://buzzinguniverse.com/wp-content/plugins/wpadverts/assets/css/wpadverts-upload.css?ver=1.5.4 ; media=all */
+@media all {
+    .adverts-form-aligned .adverts-plupload-upload-ui {
+        width: 60%;
+        float: left;
+    }
+
+    .adverts-gallery {
+        width: 100%;
+        height: 130px;
+        border: 1px solid #e5e5e5;
+        background-color: #fcfcfc;
+        padding: 0px 0 20px 0;
+        opacity: 0.7;
+        z-index: 0;
+        text-align: center;
+        line-height: 100%;
+        font-weight: bold;
+        margin: auto;
+        box-sizing: border-box;
+    }
+
+    .adverts-gallery>p {
+        font-size: 1.3em;
+        font-weight: normal;
+        margin: 20px 0 20px;
+        padding: 0;
+        color: gray;
+        box-sizing: border-box;
+    }
+
+    .adverts-gallery-uploads {
+        overflow: hidden;
+        padding: 0 3px 3px 3px !important;
+    }
 }
 
 /*! CSS Used keyframes */
